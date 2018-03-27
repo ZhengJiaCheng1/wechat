@@ -1,0 +1,116 @@
+
+<view class="page">
+<movable-area class="moveArea">
+
+<!-- 底部弹窗 -->
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+  <!-- <view class="close_icon" bindtap="setModalStatus" data-status="0">×</view> -->
+    <view class="drawer_attr_content">
+      <form bindsubmit="quickAddMatter" bindreset="formReset">
+        <textarea class='inputFastMatter' placeholder="今天要做些什么呢?"  name="addMatter" />
+        <button class='submit' formType="submit" >提交</button>
+      </form>
+    </view>
+</view>
+<!-- 底部弹窗 -->
+
+
+<view class='noInputToast' wx:if="{{noInput==true}}">
+  <view>你还没说要干嘛呢</view>
+</view>
+
+
+<view class="drawer_screen" bindtap="setModalStatus" data-status="0" wx:if="{{choseLevel}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{choseLevel}}">
+  <!-- <view class="close_icon" bindtap="setModalStatus" data-status="0">×</view> -->
+    <view class="drawer_attr_content">
+      <form bindsubmit="quickAddMatter" bindreset="formReset">
+        <textarea class='inputFastMatter' placeholder="今天要做些什么呢?"  name="addMatter" />
+        <button class='submit' formType="submit" >提交</button>
+      </form>
+    </view>
+</view>
+
+
+
+    <view class='NotFinished'>
+      <view class='NotFinished_title'>
+      今天
+      </view>
+      <view class='row'>
+        <scroll-view class="cell_2 checkbox" scroll-left="{{item.scrollLeft}}" scroll-x="true" wx:for="{{NotFinishedList}}">
+         <view class="cell_2_body">
+            <view class="checkbox_group" >
+              <view class="checkbox_icon checkbox_1" bindtap="check" wx:if="{{!item.selectStatus}}" data-index="{{index}}">
+                  <image wx:if="{{item.matterLevel==0}}" class='no_check_img' src='../../images/no_check.png'></image>
+                  <image wx:if="{{item.matterLevel==1}}" class='no_check_img' src='../../images/no_check_low.png'></image>
+                  <image wx:if="{{item.matterLevel==2}}" class='no_check_img' src='../../images/no_check_middle.png'></image>
+                  <image wx:if="{{item.matterLevel==3}}" class='no_check_img' src='../../images/no_check_high.png'></image>
+                </view>
+              </view>
+            </view> 
+          <view class="checkbox_content">{{item.title}}</view>
+           <view class="createTimeNF" wx:if="{{nowTimeStr==item.createTimeStr}}">今天</view>
+          <view class="createTimeNF" wx:if="{{nowTime!=item.createTime}}">{{item.createTime[1]}}月{{item.createTime[2]}}日</view>
+
+          <view class="cell_2_delete2" bindtap="deleteNotFinished" data-index="{{index}}">删除</view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class='HadFinished'>
+      <view class='HadFinished_title'>
+      已完成
+      </view>
+      <view class='row'>
+        <scroll-view class="cell_2 checkbox" scroll-left="{{item.scrollLeft}}" scroll-x="true" wx:for="{{HadFinishedList}}">
+         <view class="cell_2_body">
+            <view class="checkbox_group">
+              <view class="checkbox_icon checkbox_1_selected" bindtap="uncheck" wx:if="{{item.selectStatus}}" data-index="{{index}}">
+                <image class='no_check_img' src='../../images/checked.png'></image>
+              </view>
+            </view>
+            </view> 
+          <view class="HadFinished_checkbox_content">{{item.title}}</view>
+         <view class="createTimeHD" wx:if="{{nowTimeStr==item.createTimeStr}}">今天</view>
+          <view class="createTimeHD" wx:if="{{nowTime!=item.createTime}}">{{item.createTime[1]}}月{{item.createTime[2]}}日</view>
+          <view class="cell_2_delete2" bindtap="deleteHadFinished" data-index="{{index}}">删除</view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class='Overdue'>
+      <view class='Overdue_title'>
+      未完成
+      </view>
+     <view class='row'>
+        <scroll-view class="cell_2 checkbox" scroll-left="{{item.scrollLeft}}" scroll-x="true" wx:for="{{OverdueList}}">
+         <view class="cell_2_body">
+            <view class="checkbox_group">
+              <view class="checkbox_icon checkbox_1_selected" bindtap="uncheckOverdue" data-index="{{index}}">
+                <image class='no_check_img' src='../../images/Overdue.png'></image>
+              </view>
+            </view>
+            </view> 
+          <view class="Overdue_checkbox_content">{{item.title}}</view>
+          <view class="createTimeOD">{{item.createTime[1]}}月{{item.createTime[2]}}日</view>
+          <view class="cell_2_delete2" bindtap="deleteOverdue" data-index="{{index}}">删除</view>
+        </scroll-view>
+      </view>
+    </view>
+
+  
+  <view class='AddMatter'bindtap="multipleTap" bindlongtap="longTap" bindtouchstart="touchStart" bindtouchend="touchEnd" data-status="1">
+    <movable-view direction="all" style=' height: 125rpx;width: 125rpx;'>
+      <image class='addIcon' wx:if="{{clickAdderButton==false}}" src='../../images/write.png' ></image>
+      <image class='addIcon' wx:if="{{clickAdderButton==true}}" src='../../images/write_click.png' ></image>
+
+    </movable-view>
+  </view> 
+
+</movable-area>
+
+
+</view> 
+

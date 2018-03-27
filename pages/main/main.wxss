@@ -1,0 +1,269 @@
+ page{
+     height: 100%;
+ }
+.page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    height: 100%;
+    background: #efefef;
+}
+
+
+
+
+.moveArea{
+  height: 100%;
+  width: 100%;
+}
+
+.drawer_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 99;
+  color: #fff;
+}
+
+.drawer_attr_box {
+  width: 80%;
+  height: 40%;
+  overflow: hidden;
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  z-index: 100;
+  background: #fff;
+  border-radius: 15rpx;
+}
+
+/* .close_icon {
+  width: 25rpx;
+  height: 25rpx;
+  line-height: 20rpx;
+  font-size: 30rpx;
+  position: absolute;
+  right: 5rpx;
+  top:5rpx;
+  padding: 10rpx;
+  color: #ccc;
+  border: 1rpx solid #ccc;
+  border-radius: 50%;
+  text-align: center;
+  background: #fff;
+} */
+
+.drawer_attr_content {
+  padding: 20rpx;
+  /* height: 600rpx; */
+  overflow-y: scroll;
+}
+
+.inputFastMatter{
+  width: 100%;
+  margin: 20rpx 10rpx 10rpx 10rpx;
+}
+
+
+.NotFinished_title{
+  font-size: 30rpx;
+  padding: 10rpx 0rpx 10rpx 40rpx;
+  color: #d96204;
+  background-color: #fecba2;
+}
+
+.HadFinished_title{
+   font-size: 30rpx;
+  padding: 10rpx 0rpx 10rpx 40rpx;
+  color: #d96204;
+  background-color: #fecba2;
+}
+
+.Overdue_title{
+   font-size: 30rpx;
+  padding: 10rpx 0rpx 10rpx 40rpx;
+  color: #d96204;
+  background-color: #fecba2;
+}
+
+
+
+.cell_2 {
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  /* border-bottom: 1rpx solid #ececec; */
+}
+
+.cell_2_body {
+  width: 100%;
+}
+
+.cell_2_delete2 {
+  position: absolute;
+  top: 0;
+  font-size: 30rpx;
+  width: 120rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  right: -120rpx;
+  background: #f06b02;
+  color: #fff;
+}
+
+.checkbox {
+  width: 100%;
+  height: 100rpx;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.checkbox_group {
+  width: 15%;
+  height: 100rpx;
+  line-height: 120rpx;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+
+.checkbox_icon {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+}
+
+.checkbox_1 {
+
+  background-size: cover;
+}
+
+.checkbox_1_selected {
+  background-size: cover;
+}
+
+.no_check_img{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.checkbox_content {
+  font-size: 35rpx;
+  color: #616161;
+  float: left;
+  width: 65%;
+  line-height: 100rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.HadFinished_checkbox_content {
+    font-size: 35rpx;
+  color: #e9d7c8;
+  float: left;
+  width: 65%;
+  line-height: 100rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.Overdue_checkbox_content{
+    font-size: 35rpx;
+  color: #f33838;
+  float: left;
+  width: 65%;
+  line-height: 100rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.createTimeNF{
+  font-size: 25rpx;
+  color: #777777;
+  float: right;
+  width: 18%;
+  line-height: 100rpx;
+  text-align: right;
+  margin-right: 2%;
+}
+
+.createTimeHD{
+  font-size: 25rpx;
+  color: #e9d7c8;
+  float: right;
+  width: 18%;
+  line-height: 100rpx;
+  text-align: right;
+  margin-right: 2%;
+}
+
+
+.createTimeOD{
+  font-size: 25rpx;
+  color: #f33838;
+  float: right;
+  width: 18%;
+  line-height: 100rpx;
+  text-align: right;
+  margin-right: 2%;
+}
+
+
+
+.AddMatter{
+  position: absolute;
+  bottom:20%;
+  left: 50%;
+  margin-left: -65rpx;
+}
+
+.addIcon{
+
+  height: 125rpx;
+  width: 130rpx;
+}
+
+.submit{
+  font-size: 30rpx;
+  height: 70rpx;
+  width: 150rpx;
+  background-color: #f06b02;
+  border-radius: 40rpx;
+  color: #fff;
+  text-align: center;
+  justify-content:center;
+  display:flex;
+  align-items:center;
+  margin: auto;
+}
+
+.noInputToast{
+  color: #fff;
+    justify-content:center;
+    display:flex;
+    align-items:center;
+    text-align: center;
+  font-size: 30rpx;
+    position: absolute;
+  z-index: 101;
+  width: 300rpx;
+  height: 100rpx;
+  background-color: #f06b02;
+   top: 30%;
+  left: 50%;
+  margin-left: -150rpx;
+  border-radius: 15rpx;
+  opacity: 0.6;
+}
+
+
