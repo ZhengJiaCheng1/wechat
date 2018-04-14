@@ -27,10 +27,10 @@ Page({
     var getSingleQuestionList = getApp().globalData.singleChoiceAnswerNow;
     var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;
     console.log(getSingleQuestionList);
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 25; i++) {
       getSingleQuestionList[i].attributes.number = i + 1;
     }
-    for (var j = 0; j < 20; j++) {
+    for (var j = 0; j < 25; j++) {
       getMultiQuestionList[j].attributes.number = j + 1;
     }
    
@@ -43,7 +43,7 @@ Page({
     console.log(getSingleQuestionList);
     var saveSingleQuestionList=new Array();
     var saveMultiQuestionList = new Array();
-    for(var i=0;i<20;i++){
+    for(var i=0;i<25;i++){
       saveSingleQuestionList[i] = getSingleQuestionList[i].attributes;
       saveMultiQuestionList[i] = getMultiQuestionList[i].attributes;
     }
@@ -191,7 +191,7 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '计算机二级office题库') {
+    else if (choseQuestionBank == '脱硫值班员') {
       queryQBAttributes.get('cVH1OOOX', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;
@@ -215,7 +215,7 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '毛概期末考试题库') {
+    else if (choseQuestionBank == '汽机题库') {
       queryQBAttributes.get('pQrWhhhm', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;
@@ -239,7 +239,7 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '中国近代史期末考试题库') {
+    else if (choseQuestionBank == '锅炉题库') {
       queryQBAttributes.get('h07m333C', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;
@@ -263,7 +263,7 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '马克思原理期末考试题库') {
+    else if (choseQuestionBank == '电气题库') {
       queryQBAttributes.get('ZwT6AAAa', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;
@@ -287,7 +287,7 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '形式与政策') {
+    else if (choseQuestionBank == '其他') {
       queryQBAttributes.get('6o5I3334', {
         success: function (result) {
           var peopleNumber = result.attributes.PeopleNumber + 1;
@@ -351,8 +351,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '计算机二级office题库') {
-      queryHistory.equalTo("choseQuestionBank", "计算机二级office题库");
+    else if (choseQuestionBank == '脱硫值班员') {
+      queryHistory.equalTo("choseQuestionBank", "脱硫值班员");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -371,8 +371,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '毛概期末考试题库') {
-      queryHistory.equalTo("choseQuestionBank", "毛概期末考试题库");
+    else if (choseQuestionBank == '汽机题库') {
+      queryHistory.equalTo("choseQuestionBank", "汽机题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -391,8 +391,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '中国近代史期末考试题库') {
-      queryHistory.equalTo("choseQuestionBank", "中国近代史期末考试题库");
+    else if (choseQuestionBank == '锅炉题库') {
+      queryHistory.equalTo("choseQuestionBank", "锅炉题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -411,8 +411,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '马克思原理期末考试题库') {
-      queryHistory.equalTo("choseQuestionBank", "马克思原理期末考试题库");
+    else if (choseQuestionBank == '电气题库') {
+      queryHistory.equalTo("choseQuestionBank", "电气题库");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {
@@ -431,8 +431,8 @@ Page({
         }
       });
     }
-    else if (choseQuestionBank == '形式与政策') {
-      queryHistory.equalTo("choseQuestionBank", "形式与政策");
+    else if (choseQuestionBank == '其他') {
+      queryHistory.equalTo("choseQuestionBank", "其他");
       queryHistory.find({
         success: function (results) {
           for (var i = 0; i < results.length; i++) {

@@ -22,13 +22,26 @@ Page({
   action: function () {
    
     wx.redirectTo({
-      url: '../multiChoiceDetail/multiChoiceDetail'
+
+
+
+
+     url: '../multiChoiceDetail/multiChoiceDetail'
+
+
+
     });
   },
 
   answerCard: function () {
     wx.navigateTo({
+
+
       url: '../answerCard/answerCard'
+
+
+
+
     });
   },
 

@@ -16,7 +16,7 @@ Page({
     // var noMulti;
     var getSingleQuestionList = getApp().globalData.singleChoiceAnswerNow; 
     var getMultiQuestionList = getApp().globalData.multiChoiceAnswerNow;  
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 25; i++) {
       getSingleQuestionList[i].attributes.number = i + 1;
     }
     // if (getMultiQuestionList.length==0){
@@ -34,7 +34,7 @@ Page({
     //   multiQuestionList: getMultiQuestionList,
     //   noMulti: noMulti
     // });
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 25; i++) {
       getMultiQuestionList[i].attributes.number = i + 1;
     }
 

@@ -8,7 +8,7 @@
     <view class='topLeft'><text style='margin-left:20rpx;'>单项选择</text></view>
     <view class='topRight'>
       <view class='topRightContent'>
-        <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;'>{{nowQuestionNumber+1}}</text><text> / 20</text>
+        <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;'>{{nowQuestionNumber+1}}</text><text> / 25</text>
       </view>
     </view>
   </view>
@@ -19,31 +19,52 @@
  
   <view class='questionOption'>
     <view class='item'>
-
       <view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='A'}}" bindtap='choseA'>A</view> 
       <view class='blankCharacter character' wx:if="{{questionList[nowQuestionNumber].answerResult==null||questionList[nowQuestionNumber].answerResult=='blank'||questionList[nowQuestionNumber].userChose!='A'}}" bindtap='choseA'>A</view> 
       <view class='option'>{{nowQuestion.options[0]}}</view>
     </view>
+
     <view class='item'>
-<view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='B'}}" bindtap='choseB'>B</view> 
+  <view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='B'}}" bindtap='choseB'>B</view> 
       <view class='blankCharacter character' wx:if="{{questionList[nowQuestionNumber].answerResult==null||questionList[nowQuestionNumber].answerResult=='blank'||questionList[nowQuestionNumber].userChose!='B'}}" bindtap='choseB'>B</view> 
       <view class='option'>{{nowQuestion.options[1]}}</view>
     </view>
+
+ 
+
     <view class='item'>
-<view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='C'}}" bindtap='choseC'>C</view> 
+  <view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='C'}}" bindtap='choseC'>C</view> 
       <view class='blankCharacter character' wx:if="{{questionList[nowQuestionNumber].answerResult==null||questionList[nowQuestionNumber].answerResult=='blank'||questionList[nowQuestionNumber].userChose!='C'}}" bindtap='choseC'>C</view> 
       <view class='option'>{{nowQuestion.options[2]}}</view>
     </view>
     <view class='item'>
-<view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='D'}}" bindtap='choseD'>D</view> 
+  <view class='correctCharacter character' wx:if="{{questionList[nowQuestionNumber].userChose=='D'}}" bindtap='choseD'>D</view> 
       <view class='blankCharacter character' wx:if="{{questionList[nowQuestionNumber].answerResult==null||questionList[nowQuestionNumber].answerResult=='blank'||questionList[nowQuestionNumber].userChose!='D'}}" bindtap='choseD'>D</view> 
       <view class='option'>{{nowQuestion.options[3]}}</view>
     </view>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   </view>
 
   <!-- <view class='frontQuestion' wx:if="{{nowQuestionNumber!=0}}"  bindtap='frontQuestion'>←</view> -->
 
-  <view class='lastQuestion' wx:if="{{nowQuestionNumber!=19}}"  bindtap='afterQuestion'>跳过此题</view>
+  <view class='lastQuestion' wx:if="{{nowQuestionNumber!=24}}"  bindtap='afterQuestion'>跳过此题</view>
 
   <!-- <view class='bottom'>
     <view class='left' bindtap='answerCard'>

@@ -33,25 +33,57 @@ Page({
     var questionList=new Array();
     var multiQuestionList = new Array();
    
+/*
+		if (choseQuestionBank == "集控值班员") {
+			loadQuestionBank = "MainControl";
+		}
+		else if (choseQuestionBank == "脱硫值班员") {
+			loadQuestionBank = "DesulfurMan";
+		}
+		else if (choseQuestionBank == "汽机题库") {
+			loadQuestionBank = "TurbineRun";
+		}
+		else if (choseQuestionBank == "锅炉题库") {
+			loadQuestionBank = "BoilerRun";
+		}
+		else if (choseQuestionBank == "电气题库") {
+			loadQuestionBank = "ElectricRun";
+		}
+		else if (choseQuestionBank == "其他") {
+			loadQuestionBank = "OtherBank";
+		}
+
+
+*/
+
+
+
+
+
     if (choseQuestionBank =="集控值班员"){
       loadQuestionBank="QB1";
     }
-    else if (choseQuestionBank == "计算机二级office题库"){
-      loadQuestionBank = "QB1";
+    else if (choseQuestionBank == "脱硫值班员"){
+      loadQuestionBank = "QB2";
     }
-    else if (choseQuestionBank == "毛概期末考试题库") {
+    else if (choseQuestionBank == "汽机题库") {
       loadQuestionBank = "QB3";
     }
-    else if (choseQuestionBank == "中国近代史期末考试题库") {
+    else if (choseQuestionBank == "锅炉题库") {
       loadQuestionBank = "QB4";
     }
-    else if (choseQuestionBank == "马克思原理期末考试题库") {
+    else if (choseQuestionBank == "电气题库") {
       loadQuestionBank = "QB5";
     }
-    else if (choseQuestionBank == "形式与政策") {
-      loadQuestionBank = "QB1";
+    else if (choseQuestionBank == "其他") {
+      loadQuestionBank = "QB6";
     }
-    
+
+
+
+
+
+
     var QuestionBank = Bmob.Object.extend(loadQuestionBank);
     var querySingleQuestionBank = new Bmob.Query(QuestionBank);
     querySingleQuestionBank.equalTo("type", "SC");
@@ -62,7 +94,7 @@ Page({
           questionList.push(results[i])
           questionList[i].attributes.userChose = "空";
         }
-        var newSingleQuestionList = that.getRandomSingleChoice(questionList,20)
+        var newSingleQuestionList = that.getRandomSingleChoice(questionList,25)
         that.setData({
           questionList: newSingleQuestionList,
           nowQuestion: newSingleQuestionList[0],
@@ -74,15 +106,15 @@ Page({
       }
     });
     var queryMultiQuestionBank = new Bmob.Query(QuestionBank);
-    queryMultiQuestionBank.equalTo("type", "MC");
+    queryMultiQuestionBank.equalTo("type", "JD");
     queryMultiQuestionBank.find({
       success: function (results) {
         console.log("共查询到 " + results.length + " 条记录");
         for (var i = 0; i < results.length; i++) {
           multiQuestionList.push(results[i])
         }
-        var newMultiQuestionList = that.getRandomSingleChoice(multiQuestionList, 20)
-        for(i=0;i<20;i++){
+        var newMultiQuestionList = that.getRandomSingleChoice(multiQuestionList, 25)
+        for(i=0;i<25;i++){
           newMultiQuestionList[i].attributes.userChose = "空";
         }
         that.setData({
@@ -128,13 +160,13 @@ Page({
         // score:score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber==19){
+        if (nowQuestionNumber==24){
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19){
+        else if (nowQuestionNumber != 24){
           var nextQuestionNumber = nowQuestionNumber + 1; 
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -152,13 +184,13 @@ Page({
         choseCharacter: "A",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19){
+        if (nowQuestionNumber == 24){
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19){
+        else if (nowQuestionNumber != 24){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -187,13 +219,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19){
+        else if (nowQuestionNumber != 24){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -211,14 +243,14 @@ Page({
         choseCharacter: "B",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19) {
+        else if (nowQuestionNumber != 24) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -245,13 +277,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19) {
+        else if (nowQuestionNumber != 24) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -269,13 +301,13 @@ Page({
         choseCharacter: "C",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19){
+        else if (nowQuestionNumber != 24){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -303,13 +335,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19) {
+        else if (nowQuestionNumber != 24) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -327,13 +359,13 @@ Page({
         choseCharacter: "D",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 19) {
+        if (nowQuestionNumber == 24) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 19) {
+        else if (nowQuestionNumber != 24) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -390,10 +422,10 @@ Page({
     });
   },
 
-  overSingleChoice:function(questionNumber){
+  overSingleChoice: function (questionNumber) {
     getApp().globalData.singleChoiceAnswerNow = that.data.questionList;
     getApp().globalData.multiChoiceAnswerNow = that.data.newMultiQuestionList;
-    if (questionNumber==19){
+    if (questionNumber == 24) {
       wx.redirectTo({
         url: '../multiChoiceExplain/multiChoiceExplain'
       });

@@ -77,7 +77,7 @@ Page({
     else if (that.data.choseType == 'multi' && that.data.nowQuestion.number == 1){
       var questionList = that.data.singleQuestionList;
       that.setData({
-        nowQuestion: questionList[19],
+        nowQuestion: questionList[24],
         choseType: 'single'
       })
       that.frontsingleQuestion();
@@ -114,10 +114,10 @@ Page({
 
 
   afterQuestion: function () {
-    if (that.data.choseType == 'single' && that.data.nowQuestion.number != 20) {
+    if (that.data.choseType == 'single' && that.data.nowQuestion.number != 25) {
       that.aftersingleQuestion();
     }
-    else if (that.data.choseType == 'single' && that.data.nowQuestion.number == 20){
+    else if (that.data.choseType == 'single' && that.data.nowQuestion.number == 25 ) {
       var questionList = that.data.multiQuestionList;
       that.setData({
         nowQuestion: questionList[0],
