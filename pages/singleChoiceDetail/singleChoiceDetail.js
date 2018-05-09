@@ -1,5 +1,6 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
+var QuestionEndInt= 3;
 
 Page({
   
@@ -14,7 +15,9 @@ Page({
     score:0,
     // blank:"blank",
     newMultiQuestionList:[],
-    loading:true
+    loading:true,
+		QuestionNum:100,
+		
   },
 
   
@@ -82,7 +85,18 @@ Page({
 
 
 
+//  Get has how many questions.
+		var QuestionNumBmob = Bmob.Object.extend(loadQuestionBank);
+		var QuestionNumQuery = new Bmob.Query(QuestionNumBmob);	
+		QuestionNumQuery.count().then(res => {
+			// console.log(`record has ${res} item.`);
+			that.setData({
+				QuestionNum: res,			
+			})
 
+		});
+
+		
 
     var QuestionBank = Bmob.Object.extend(loadQuestionBank);
     var querySingleQuestionBank = new Bmob.Query(QuestionBank);
@@ -94,17 +108,30 @@ Page({
           questionList.push(results[i])
           questionList[i].attributes.userChose = "空";
         }
-        var newSingleQuestionList = that.getRandomSingleChoice(questionList,25)
-        that.setData({
+
+				// var newSingleQuestionList = that.getRandomSingleChoice(questionList, 25)
+        var newSingleQuestionList = questionList;
+				
+				that.setData({
           questionList: newSingleQuestionList,
           nowQuestion: newSingleQuestionList[0],
+					
           nowQuestionNumber:0
-        });
+        })
+
+
+				;
+
+			//	console.log(nowQuestion.length);
+
+
       },
       error: function (error) {
         console.log("查询失败: " + error.code + " " + error.message);
       }
     });
+
+		
     var queryMultiQuestionBank = new Bmob.Query(QuestionBank);
     queryMultiQuestionBank.equalTo("type", "JD");
     queryMultiQuestionBank.find({
@@ -113,8 +140,9 @@ Page({
         for (var i = 0; i < results.length; i++) {
           multiQuestionList.push(results[i])
         }
-        var newMultiQuestionList = that.getRandomSingleChoice(multiQuestionList, 25)
-        for(i=0;i<25;i++){
+				// var newMultiQuestionList = that.getRandomSingleChoice(multiQuestionList, 25)
+        var newMultiQuestionList = multiQuestionList 
+				for (i = 0; i < newMultiQuestionList.length;i++){
           newMultiQuestionList[i].attributes.userChose = "空";
         }
         that.setData({
@@ -145,6 +173,9 @@ Page({
   
   },
 
+
+
+
   choseA:function(){
     var questionList = that.data.questionList;
     var nowQuestionNumber = that.data.nowQuestionNumber;
@@ -160,13 +191,14 @@ Page({
         // score:score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber==24){
+
+				if (nowQuestionNumber == QuestionEndInt){
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24){
+				else if (nowQuestionNumber != QuestionEndInt){
           var nextQuestionNumber = nowQuestionNumber + 1; 
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -184,13 +216,13 @@ Page({
         choseCharacter: "A",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24){
+				if (nowQuestionNumber == QuestionEndInt){
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24){
+				else if (nowQuestionNumber != QuestionEndInt){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -219,13 +251,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24){
+				else if (nowQuestionNumber != QuestionEndInt){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -243,14 +275,14 @@ Page({
         choseCharacter: "B",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != QuestionEndInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -277,13 +309,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != QuestionEndInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -301,13 +333,13 @@ Page({
         choseCharacter: "C",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24){
+				else if (nowQuestionNumber != QuestionEndInt){
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -335,13 +367,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != QuestionEndInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -359,13 +391,13 @@ Page({
         choseCharacter: "D",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == QuestionEndInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != QuestionEndInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -378,15 +410,15 @@ Page({
 
   },
 
-  // frontQuestion:function(){
-  //   var questionList = that.data.questionList;
-  //   var frontQuestionNumber = that.data.nowQuestionNumber-1;
-  //   that.setData({
-  //     nowQuestion: questionList[frontQuestionNumber],
-  //     nowQuestionNumber: frontQuestionNumber,
-  //   })
-  //   console.log(that.data.questionList)
-  // },
+  frontQuestion:function(){
+    var questionList = that.data.questionList;
+    var frontQuestionNumber = that.data.nowQuestionNumber-1;
+    that.setData({
+      nowQuestion: questionList[frontQuestionNumber],
+      nowQuestionNumber: frontQuestionNumber,
+    })
+    console.log(that.data.questionList)
+  },
 
   afterQuestion: function () {
     var nowQuestionNumber = that.data.nowQuestionNumber
@@ -425,9 +457,10 @@ Page({
   overSingleChoice: function (questionNumber) {
     getApp().globalData.singleChoiceAnswerNow = that.data.questionList;
     getApp().globalData.multiChoiceAnswerNow = that.data.newMultiQuestionList;
-    if (questionNumber == 24) {
+		if (questionNumber == QuestionEndInt) {
       wx.redirectTo({
-        url: '../multiChoiceExplain/multiChoiceExplain'
+				url: '../multiChoiceDetail/multiChoiceDetail'
+        // url: '../multiChoiceExplain/multiChoiceExplain'
       });
     }
   }

@@ -1,4 +1,12 @@
 
+
+
+
+
+
+
+
+
 var Bmob = require('utils/bmob.js');
 Bmob.initialize("2c3521672357ab6e3a1c7a397d38134b", "d8e5e597ce2ef7680eccf479cd549c7e");
 
@@ -8,150 +16,12 @@ App({
 
 
 
-
-
-
-
-
-
-
-/*     
-
-    var Diary = Bmob.Object.extend("TurbineRun");
-    var diary = new Diary();
-    //diary.set("title", "\"hello\"" );
-   // diary.set("type", "\"hello world&quot;");
-
+    var that = this;
+    var user = new Bmob.User();//开始注册用户
 
 
 
  
-    //添加数据，第一个入口参数是null
-    diary.save(null, {
-      success: function (result) {
-        // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
-        console.log("日记创建成功, objectId:" + result.id);
-      },
-      error: function (result, error) {
-        // 添加失败
-        console.log('创建日记失败');
-
-      }
-    });
-
-
-
-
-
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var that = this;
-    var user = new Bmob.User();//开始注册用户
     wx.getSystemInfo({
       success: function (res) {
         that.screenWidth = res.windowWidth;
@@ -228,6 +98,10 @@ App({
 
 
   },
+
+
+
+
   getUserInfo: function (cb) {
     var that = this
     if (this.globalData.userInfo) {
@@ -247,13 +121,18 @@ App({
       })
     }
   },
+
+
+
+
+	
   globalData: {
     userInfo: null,
     singleChoiceAnswerNow: [],
     multiChoiceAnswerNow: [],
     choseQuestionBank: '',
     score: 0,
-     //galobalTextItem1:" 集控值班员"
+    
 
   }
 })

@@ -41,6 +41,7 @@ Page({
       multiQuestionList: getMultiQuestionList,
     });
     console.log(getSingleQuestionList);
+
     var saveSingleQuestionList=new Array();
     var saveMultiQuestionList = new Array();
     for(var i=0;i<25;i++){
@@ -191,6 +192,8 @@ Page({
         }
       });
     }
+
+
     else if (choseQuestionBank == '脱硫值班员') {
       queryQBAttributes.get('cVH1OOOX', {
         success: function (result) {
@@ -215,6 +218,9 @@ Page({
         }
       });
     }
+
+
+		
     else if (choseQuestionBank == '汽机题库') {
       queryQBAttributes.get('pQrWhhhm', {
         success: function (result) {

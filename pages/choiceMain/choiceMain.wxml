@@ -12,9 +12,15 @@
     </picker>
   <!-- </view> -->
 
-  <view class='startAnswer' bindtap='chose'>
+
+<button open-type="getUserInfo" class='startAnswer' bindgetuserinfo="chose"> 确认选择
+</button>
+
+  <!-- <view class='startAnswer' bindtap='chose'>
     确认选择
-  </view> 
+  </view>  -->
+
+
 </view>
 
    <view class="loading_box" wx:if="{{loading}}">

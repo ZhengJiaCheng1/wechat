@@ -1,5 +1,7 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
+var JudgeQuestionInt = 24;
+
 Page({
 
  
@@ -53,13 +55,13 @@ Page({
       
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == JudgeQuestionInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != JudgeQuestionInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -76,13 +78,13 @@ Page({
         choseCharacter: "T",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == JudgeQuestionInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != JudgeQuestionInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -110,13 +112,13 @@ Page({
         // score: score,
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == JudgeQuestionInt) {
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != JudgeQuestionInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],
@@ -133,14 +135,14 @@ Page({
         choseCharacter: "F",
       });
       that.nextQuestion = setTimeout(function () {
-        if (nowQuestionNumber == 24) {
+				if (nowQuestionNumber == JudgeQuestionInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nowQuestionNumber],
             nowQuestionNumber: nowQuestionNumber,
           });
         }
-        else if (nowQuestionNumber != 24) {
+				else if (nowQuestionNumber != JudgeQuestionInt) {
           var nextQuestionNumber = nowQuestionNumber + 1;
           that.setData({
             nowQuestion: questionList[nextQuestionNumber],

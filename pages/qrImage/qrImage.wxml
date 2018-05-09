@@ -1,0 +1,10 @@
+<!--pages/qrImage/qrImage.wxml-->
+<!--<text>pages/qrImage/qrImage.wxml</text>-->
+<view class="page">
+<image style="width: 300px; height: 300px; margin:10px;" mode="aspectFit" src="{{imageSrc}}">
+</image>
+
+
+</view>
+
+ 
