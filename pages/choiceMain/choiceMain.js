@@ -208,7 +208,7 @@ Page({
             getApp().globalData.choseQuestionBank = choseQuestionBank;
             getApp().globalData.score = 0;
 
-						wx.redirectTo({
+            wx.navigateTo({
 							url: '../singleChoiceDetail/singleChoiceDetail?choseQuestionBank=' + choseQuestionBank
 						});
 

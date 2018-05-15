@@ -1,22 +1,14 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
 Page({
-
-
 	data: {
-
 	},
-
 
 	onLoad: function () {
 		that = this;
-
 	},
 
-
-
 	onShow: function () {
-
 	},
 
 	action: function () {
@@ -28,13 +20,7 @@ Page({
 
 	answerCard: function () {
 		wx.navigateTo({
-
-
 			url: '../answerCard/answerCard'
-
-
-
-
 		});
 	},
 

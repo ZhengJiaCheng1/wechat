@@ -32,6 +32,13 @@ App({
 
     var newOpenid = wx.getStorageSync('openid')
     if (!newOpenid) {
+
+
+
+
+
+
+			
       wx.login({
         success: function (res) {
           user.loginWithWeapp(res.code).then(function (user) {
@@ -128,7 +135,8 @@ App({
 	
   globalData: {
     userInfo: null,
-    singleChoiceAnswerNow: [],
+		singleChoiceAnswerNow: [],
+    singleWrongSeq: [],      //   The  sequence of the wrong questions that user answer.
     multiChoiceAnswerNow: [],
     choseQuestionBank: '',
     score: 0,

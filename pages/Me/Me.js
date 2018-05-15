@@ -15,14 +15,14 @@ Page({
 		var currentUser = Bmob.User.current();
 		var currentUserId = currentUser.id;
 		
-		app.getUserInfo(function (userInfo) {
-			console.log(userInfo)
+		// app.getUserInfo(function (userInfo) {
+		// 	console.log(userInfo)
 			//更新数据
 			that.setData({
-				userInfo: userInfo,
+				// userInfo: userInfo,
 				currentUserId: currentUserId
 			})
-		})
+		 
 	},
 
 	onShow: function () {

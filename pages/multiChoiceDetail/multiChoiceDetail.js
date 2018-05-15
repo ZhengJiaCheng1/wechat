@@ -1,9 +1,8 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
-var JudgeQuestionInt = 24;
+var JudgeQuestionInt = 4;
 
 Page({
-
  
   data: {
     choseQuestionBank: '',
@@ -14,8 +13,9 @@ Page({
     choseCharacter: [],
     score: 0,
     choseT: false,
-    choseF: false
-
+    choseF: false,
+  	QuestionEndIntData: '',
+  	QuestionNum: 100,
   },
 
 
@@ -28,17 +28,57 @@ Page({
       nowQuestion: questionList[0],
       nowQuestionNumber: 0
     });
+
+		var loadQuestionBank;
+
+		if (choseQuestionBank == "集控值班员") {
+			loadQuestionBank = "QB1";
+		}
+		else if (choseQuestionBank == "脱硫值班员") {
+			loadQuestionBank = "QB2";
+		}
+		else if (choseQuestionBank == "汽机题库") {
+			loadQuestionBank = "QB3";
+		}
+		else if (choseQuestionBank == "锅炉题库") {
+			loadQuestionBank = "QB4";
+		}
+		else if (choseQuestionBank == "电气题库") {
+			loadQuestionBank = "QB5";
+		}
+		else if (choseQuestionBank == "其他") {
+			loadQuestionBank = "QB6";
+		}
+
+		//  Get has how many questions.
+		var QuestionNumBmob = Bmob.Object.extend(loadQuestionBank);
+		var QuestionNumQuery = new Bmob.Query(QuestionNumBmob);
+		QuestionNumQuery.count().then(res => {
+			// console.log(`record has ${res} item.`);
+
+			// Set the question number to answer equal to the res.
+			// 	QuestionEndInt = res-1;
+
+			that.setData({
+				QuestionNum: res,
+				QuestionEndIntData: res - 1,
+			})
+
+
+		});
+
+
+
+
+
+		
     console.log(that.data.nowQuestion)
     console.log(getApp().globalData.multiChoiceAnswerNow)
   },
 
 
-  onShow: function () {
-  
+  onShow: function () {  
   },
-
-
- 
 
 
   choseT: function () {
@@ -85,11 +125,16 @@ Page({
           });
         }
 				else if (nowQuestionNumber != JudgeQuestionInt) {
-          var nextQuestionNumber = nowQuestionNumber + 1;
-          that.setData({
-            nowQuestion: questionList[nextQuestionNumber],
-            nowQuestionNumber: nextQuestionNumber,
-          });
+
+
+          // var nextQuestionNumber = nowQuestionNumber + 1;
+          // that.setData({
+          //   nowQuestion: questionList[nextQuestionNumber],
+          //   nowQuestionNumber: nextQuestionNumber,
+          // });
+
+
+
         }
       }, 300);
     }
@@ -143,11 +188,15 @@ Page({
           });
         }
 				else if (nowQuestionNumber != JudgeQuestionInt) {
-          var nextQuestionNumber = nowQuestionNumber + 1;
-          that.setData({
-            nowQuestion: questionList[nextQuestionNumber],
-            nowQuestionNumber: nextQuestionNumber,
-          });
+
+
+          // var nextQuestionNumber = nowQuestionNumber + 1;
+          // that.setData({
+          //   nowQuestion: questionList[nextQuestionNumber],
+          //   nowQuestionNumber: nextQuestionNumber,
+          // });
+
+
         }
       }, 300);
     }
@@ -165,15 +214,15 @@ Page({
     }
   },
 
-  // frontQuestion: function () {
-  //   var questionList = that.data.questionList;
-  //   var frontQuestionNumber = that.data.nowQuestionNumber - 1;
-  //   that.setData({
-  //     nowQuestion: questionList[frontQuestionNumber],
-  //     nowQuestionNumber: frontQuestionNumber,
-  //   })
-  //   console.log(that.data.questionList)
-  // },
+  frontQuestion: function () {
+    var questionList = that.data.questionList;
+    var frontQuestionNumber = that.data.nowQuestionNumber - 1;
+    that.setData({
+      nowQuestion: questionList[frontQuestionNumber],
+      nowQuestionNumber: frontQuestionNumber,
+    })
+    console.log(that.data.questionList)
+  },
 
   afterQuestion: function () {
     var nowQuestionNumber = that.data.nowQuestionNumber

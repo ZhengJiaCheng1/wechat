@@ -298,7 +298,23 @@ Page({
     wx.switchTab({
       url: '../choiceMain/choiceMain'
     })
-  }
+  },
+
+	onShareAppMessage: function (res) {
+		if (res.from === 'button') {
+			console.log(res.target)
+		}
+		return {
+			title: '大唐雷电',
+			path: '/pages/choiceMain/choiceMain',
+			success: function (res) {
+				// 转发成功
+			},
+			fail: function (res) {
+				// 转发失败
+			}
+		}
+	},
 
 
  

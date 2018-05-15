@@ -11,11 +11,15 @@
     </view>
   
  
+
   <view class='singleChoice' wx:for="{{singleQuestionList}}">
     <view class='singleChoiceItemCorrect' wx:if="{{item.answerResult=='correct'}}">{{item.number}}</view>
     <view class='singleChoiceItemError' wx:if="{{item.answerResult=='error'}}">{{item.number}}</view>
     <view class='singleChoiceItemBlank' wx:if="{{item.answerResult==null||item.answerResult=='blank'}}">{{item.number}}</view>
   </view>
+
+
+
 
   <view style='height:20rpx;  clear: both;'></view>
 

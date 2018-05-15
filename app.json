@@ -1,9 +1,9 @@
 {
 	"pages": [
-	
 		"pages/choiceMain/choiceMain",
-			"pages/Me/Me",
-			"pages/analysis/analysis",
+		"pages/testHistory/testHistory",
+		"pages/Me/Me",
+		"pages/analysis/analysis",
 		"pages/multiChoiceDetail/multiChoiceDetail",
 		"pages/register/register",
 		"pages/result/result",
@@ -11,14 +11,13 @@
 		"pages/personalInformation/personalInformation",
 		"pages/multiChoiceExplain/multiChoiceExplain",
 		"pages/overAnswer/overAnswer",
-		"pages/testHistory/testHistory",
-		
 		"pages/singleChoiceExplain/singleChoiceExplain",
 		"pages/singleChoiceDetail/singleChoiceDetail",
 		"pages/historyResult/historyResult",
 		"pages/ranking/ranking",
 		"pages/qrImage/qrImage",
 		"pages/wrong/wrong",
+		"pages/wrongDisplay/wrongDisplay",
 		"pages/questionBack/questionBack"
 	],
 	"window": {
@@ -41,7 +40,7 @@
 				"text": "错题",
 				"iconPath": "images/wrong.png",
 				"selectedIconPath": "images/wrongClick.png",
-				"pagePath": "pages/ranking/ranking"
+				"pagePath": "pages/wrong/wrong"
 			},
 			{
 				"text": "我的",

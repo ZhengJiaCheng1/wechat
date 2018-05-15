@@ -4,6 +4,10 @@
       <view class="loading3 loading3_2"></view>
       <view class="loading3 loading3_3"></view>
     </view>
+
+
+
+<!-- 		
   <view class='grade'><text style='font-size:87rpx;'>{{score}}</text> /60分</view>
  
    <view class='dataAnalysis'>
@@ -27,7 +31,12 @@
     </view>
   </view>  
 
-  <view class='grayLine'></view>
+  <view class='grayLine'></view> -->
+
+
+
+
+
 
 <view class='title'> 
       <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;'>|</text>

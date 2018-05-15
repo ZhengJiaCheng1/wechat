@@ -1,15 +1,16 @@
 <view class="page">
   <view class='headName'>	
-     <image class='head' src='{{userInfo.avatarUrl}}'></image> 
-     <view class='name'>{{userInfo.nickName}}</view> 
+     <!-- <image class='head' src='{{userInfo.avatarUrl}}'></image> 
+     <view class='name'>{{userInfo.nickName}}</view>  -->
+		 <view class='name'>欢迎使用~</view>
   </view>
 
   <view class='grayLine'></view>
 
-  <view class='testHistory' bindtap='testHistory'>
+  <!-- <view class='testHistory' bindtap='testHistory'>
     <image class='icon' src='../../images/1-01.png'></image>
     <view class='text'>测试历史</view>
-  </view>
+  </view> -->
 
   <view class='grayLine1'></view>
 
@@ -26,7 +27,9 @@
     <view class='text'>分享二维码</view>
   </view>
 
-  <view class='grayLine1'></view>
+  <view class='grayLine2'></view>
+
+  <!-- <view class='grayLine1'></view> -->
 
   <view class='personalInformation' bindtap='questionBack'>
     <image class='icon'  src='../../images/1-03.png'></image>
