@@ -1,7 +1,8 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
-Page({
+var JudgeQuestionInt = 4;
 
+Page({
  
   data: {
     choseQuestionBank: '',
@@ -11,11 +12,10 @@ Page({
     nowQuestionNumber: '',
     choseCharacter: [],
     score: 0,
-    choseA: false,
-    choseB: false,
-    choseC: false,
-    choseD: false
-
+    choseT: false,
+    choseF: false,
+  	QuestionEndIntData: '',
+  	QuestionNum: 100,
   },
 
 
@@ -28,102 +28,180 @@ Page({
       nowQuestion: questionList[0],
       nowQuestionNumber: 0
     });
+
+		var loadQuestionBank;
+
+		if (choseQuestionBank == "集控值班员") {
+			loadQuestionBank = "QB1";
+		}
+		else if (choseQuestionBank == "脱硫值班员") {
+			loadQuestionBank = "QB2";
+		}
+		else if (choseQuestionBank == "汽机题库") {
+			loadQuestionBank = "QB3";
+		}
+		else if (choseQuestionBank == "锅炉题库") {
+			loadQuestionBank = "QB4";
+		}
+		else if (choseQuestionBank == "电气题库") {
+			loadQuestionBank = "QB5";
+		}
+		else if (choseQuestionBank == "其他") {
+			loadQuestionBank = "QB6";
+		}
+
+		//  Get has how many questions.
+		var QuestionNumBmob = Bmob.Object.extend(loadQuestionBank);
+		var QuestionNumQuery = new Bmob.Query(QuestionNumBmob);
+		QuestionNumQuery.count().then(res => {
+			// console.log(`record has ${res} item.`);
+
+			// Set the question number to answer equal to the res.
+			// 	QuestionEndInt = res-1;
+
+			that.setData({
+				QuestionNum: res,
+				QuestionEndIntData: res - 1,
+			})
+
+
+		});
+
+
+
+
+
+		
     console.log(that.data.nowQuestion)
     console.log(getApp().globalData.multiChoiceAnswerNow)
   },
 
 
-  onShow: function () {
+  onShow: function () {  
+  },
+
+
+  choseT: function () {
+    var questionList = that.data.questionList;
+    var nowQuestionNumber = that.data.nowQuestionNumber;
+    var answer = questionList[nowQuestionNumber].attributes.answer[0];
+    if ("T" == answer) {
+      getApp().globalData.score++;
+      questionList[nowQuestionNumber].attributes.answerResult = "correct";
+      questionList[nowQuestionNumber].attributes.userChose = "T";
+      that.setData({
+        questionList: questionList,
+        choseCharacter: "T",
+      
+      });
+      that.nextQuestion = setTimeout(function () {
+				if (nowQuestionNumber == JudgeQuestionInt) {
+          that.setData({
+            nowQuestion: questionList[nowQuestionNumber],
+            nowQuestionNumber: nowQuestionNumber,
+          });
+        }
+				else if (nowQuestionNumber != JudgeQuestionInt) {
+          var nextQuestionNumber = nowQuestionNumber + 1;
+          that.setData({
+            nowQuestion: questionList[nextQuestionNumber],
+            nowQuestionNumber: nextQuestionNumber,
+          });
+        }
+      }, 300);
+    }
+    else if ("T" != answer) {
+      questionList[nowQuestionNumber].attributes.answerResult = "error";
+      questionList[nowQuestionNumber].attributes.userChose = "T";
+      that.setData({
+        questionList: questionList,
+        choseCharacter: "T",
+      });
+      that.nextQuestion = setTimeout(function () {
+				if (nowQuestionNumber == JudgeQuestionInt) {
+          that.setData({
+            nowQuestion: questionList[nowQuestionNumber],
+            nowQuestionNumber: nowQuestionNumber,
+          });
+        }
+				else if (nowQuestionNumber != JudgeQuestionInt) {
+
+
+          // var nextQuestionNumber = nowQuestionNumber + 1;
+          // that.setData({
+          //   nowQuestion: questionList[nextQuestionNumber],
+          //   nowQuestionNumber: nextQuestionNumber,
+          // });
+
+
+
+        }
+      }, 300);
+    }
+
+  },
+
+
+  choseF: function () {
+    var questionList = that.data.questionList;
+    var nowQuestionNumber = that.data.nowQuestionNumber;
+    var answer = questionList[nowQuestionNumber].attributes.answer[0];
+    if ("F" == answer) {
+      getApp().globalData.score++;
+      // var score = that.data.score + 1;
+      questionList[nowQuestionNumber].attributes.answerResult = "correct";
+      questionList[nowQuestionNumber].attributes.userChose = "F";
+      that.setData({
+        questionList: questionList,
+        choseCharacter: "F",
+        // score: score,
+      });
+      that.nextQuestion = setTimeout(function () {
+				if (nowQuestionNumber == JudgeQuestionInt) {
+          that.setData({
+            nowQuestion: questionList[nowQuestionNumber],
+            nowQuestionNumber: nowQuestionNumber,
+          });
+        }
+				else if (nowQuestionNumber != JudgeQuestionInt) {
+          var nextQuestionNumber = nowQuestionNumber + 1;
+          that.setData({
+            nowQuestion: questionList[nextQuestionNumber],
+            nowQuestionNumber: nextQuestionNumber,
+          });
+        }
+      }, 300);
+    }
+    else if ("F" != answer) {
+      questionList[nowQuestionNumber].attributes.answerResult = "error";
+      questionList[nowQuestionNumber].attributes.userChose = "F";
+      that.setData({
+        questionList: questionList,
+        choseCharacter: "F",
+      });
+      that.nextQuestion = setTimeout(function () {
+				if (nowQuestionNumber == JudgeQuestionInt) {
+          var nextQuestionNumber = nowQuestionNumber + 1;
+          that.setData({
+            nowQuestion: questionList[nowQuestionNumber],
+            nowQuestionNumber: nowQuestionNumber,
+          });
+        }
+				else if (nowQuestionNumber != JudgeQuestionInt) {
+
+
+          // var nextQuestionNumber = nowQuestionNumber + 1;
+          // that.setData({
+          //   nowQuestion: questionList[nextQuestionNumber],
+          //   nowQuestionNumber: nextQuestionNumber,
+          // });
+
+
+        }
+      }, 300);
+    }
+  },
   
-  },
-
-  choseA: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    choseCharacter.push('A')
-    that.setData({
-      choseA:true,
-    });
-  },
-
-  notChoseA: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    that.findCharacter('A', choseCharacter);
-    that.setData({
-      choseA: false,
-    });
-  },
-
-  choseB: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    choseCharacter.push('B');
-    that.setData({
-      choseB: true,
-    });
-  },
-
-  notChoseB: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    that.findCharacter('B', choseCharacter);
-    that.setData({
-      choseB: false,
-    });
-  },
-
-  choseC: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    choseCharacter.push('C');
-    that.setData({
-      choseC: true,
-    });
-  },
-
-  notChoseC: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    that.findCharacter('C', choseCharacter);
-    that.setData({
-      choseC: false,
-    });
-  },
-
-  choseD: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    choseCharacter.push('D');
-    that.setData({
-      choseD: true,
-    });
-  },
-
-  notChoseD: function () {
-    var questionList = that.data.questionList;
-    var nowQuestionNumber = that.data.nowQuestionNumber;
-    var answer = questionList[nowQuestionNumber].attributes.answer[0];
-    var choseCharacter = that.data.choseCharacter;
-    that.findCharacter('D', choseCharacter);
-    that.setData({
-      choseD: false,
-    });
-  },
 
 
 
@@ -136,15 +214,15 @@ Page({
     }
   },
 
-  // frontQuestion: function () {
-  //   var questionList = that.data.questionList;
-  //   var frontQuestionNumber = that.data.nowQuestionNumber - 1;
-  //   that.setData({
-  //     nowQuestion: questionList[frontQuestionNumber],
-  //     nowQuestionNumber: frontQuestionNumber,
-  //   })
-  //   console.log(that.data.questionList)
-  // },
+  frontQuestion: function () {
+    var questionList = that.data.questionList;
+    var frontQuestionNumber = that.data.nowQuestionNumber - 1;
+    that.setData({
+      nowQuestion: questionList[frontQuestionNumber],
+      nowQuestionNumber: frontQuestionNumber,
+    })
+    console.log(that.data.questionList)
+  },
 
   afterQuestion: function () {
     var nowQuestionNumber = that.data.nowQuestionNumber
@@ -157,10 +235,8 @@ Page({
       nowQuestion: questionList[afterQuestionNumber],
       nowQuestionNumber: afterQuestionNumber,
       questionList: questionList,
-      choseA: false,
-      choseB: false,
-      choseC: false,
-      choseD: false,
+      choseT: false,
+      choseF: false,
       choseCharacter:[]
     }) 
     
@@ -222,21 +298,16 @@ Page({
     that.setData({
      
       questionList: questionList,
-      choseA: false,
-      choseB: false,
-      choseC: false,
-      choseD: false,
+      choseT: false,
+      choseF: false,
       choseCharacter: []
     })
     wx.redirectTo({
       url: '../result/result'
     });
-  }
+  },
 
 
-
-
-  
 
 
 })

@@ -33,7 +33,7 @@ page{
   background-color: #e1e3e3;
 }
 
-.testHistory,.personalInformation{
+.testHistory,.personalInformation,.QRCode{
   margin: 28rpx 0rpx 28rpx 32rpx;
   display:flex;
   align-items:center;

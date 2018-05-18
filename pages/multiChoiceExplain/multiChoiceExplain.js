@@ -1,35 +1,27 @@
 var that;
 var Bmob = require('../../utils/bmob.js');
 Page({
+	data: {
+	},
 
+	onLoad: function () {
+		that = this;
+	},
 
-  data: {
-   
-  },
+	onShow: function () {
+	},
 
+	action: function () {
 
-  onLoad: function () {
-    that = this;
-   
-  },
+		wx.redirectTo({
+			url: '../multiChoiceDetail/multiChoiceDetail'
+		});
+	},
 
-
-
-  onShow: function () {
-  
-  },
-
-  action: function () {
-   
-    wx.redirectTo({
-      url: '../multiChoiceDetail/multiChoiceDetail'
-    });
-  },
-
-  answerCard: function () {
-    wx.navigateTo({
-      url: '../answerCard/answerCard'
-    });
-  },
+	answerCard: function () {
+		wx.navigateTo({
+			url: '../answerCard/answerCard'
+		});
+	},
 
 })
