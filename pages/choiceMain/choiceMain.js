@@ -6,8 +6,8 @@ Page({
 
 
   data: { 
-		// choseQuestionBank: "点击选择",
-		choseQuestionBank:"集控值班员",
+		choseQuestionBank: "点击选择",
+		// choseQuestionBank:"集控值班员",
 		 
 
 		diaryList: [],

@@ -143,5 +143,12 @@ App({
 		score: 0,
 		singleNum: 0,
 		JudgeNum: 0,
-	}
+
+		singleCollectSeq: [],      //   The  sequence of the single collect questions that user answer.
+		judgeCollectSeq: [],      //   The  sequence of the judge wrong questions that user answer.
+		collectSingleNum: 0,
+		collectJudgeNum: 0,
+
+		
+			}
 })

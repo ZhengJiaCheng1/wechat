@@ -1,0 +1,263 @@
+<view class="page">
+
+
+
+  <view wx:if="{{IsDisplayQuesNum==false}}">
+
+
+    <view class="loading_box" wx:if="{{loading}}">
+      <view class="loading3 loading3_1"></view>
+      <view class="loading3 loading3_2"></view>
+      <view class="loading3 loading3_3"></view>
+    </view>
+
+
+    <view wx:if="{{hadCollect==true}}">
+
+      <view wx:if="{{choseType=='singleQues'}}">
+        <view class='top'>
+          <view class='topLeft'>
+            <text style='margin-left:20rpx;'>单选</text>
+          </view>
+
+
+          <view class='topRight'>
+            <view>
+              <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;'>{{nowQuestionNumber+1}}</text>
+              <text> / {{QuestionNum}}</text>
+            </view>
+          </view>
+
+        </view>
+        <view class='questionTitle'>
+          {{nowQuestion.title}}
+        </view>
+        <view class='questionOption'>
+
+          <view class='item'>
+            <view class='blankCharacter character' wx:if="{{correctAnswer!='A'}}">A</view>
+            <view wx:if="{{correctAnswer=='A'}}">
+              <view wx:if="{{showAnswer==true}}">
+                <view class='correctCharacter character'>A</view>
+              </view>
+
+              <view wx:if="{{showAnswer==false}}">
+                <view class='blankCharacter character'>A</view>
+              </view>
+
+            </view>
+
+            <view class='option'>{{nowQuestion.options[0]}}</view>
+          </view>
+
+          <view class='item'>
+            <view class='blankCharacter character' wx:if="{{correctAnswer!='B'}}">B</view>
+            <!-- <view class='correctCharacter character' wx:else>B</view> -->
+
+            <view wx:if="{{correctAnswer=='B'}}">
+              <view wx:if="{{showAnswer==true}}">
+                <view class='correctCharacter character'>B</view>
+              </view>
+
+              <view wx:if="{{showAnswer==false}}">
+                <view class='blankCharacter character'>B</view>
+              </view>
+
+            </view>
+
+            <view class='option'>{{nowQuestion.options[1]}}</view>
+          </view>
+
+          <view class='item'>
+            <view class='blankCharacter character' wx:if="{{correctAnswer!='C'}}">C</view>
+            <!-- <view class='correctCharacter character' wx:else>C</view> -->
+            <view wx:if="{{correctAnswer=='C'}}">
+              <view wx:if="{{showAnswer==true}}">
+                <view class='correctCharacter character'>C</view>
+              </view>
+
+              <view wx:if="{{showAnswer==false}}">
+                <view class='blankCharacter character'>C</view>
+              </view>
+
+            </view>
+            <view class='option'>{{nowQuestion.options[2]}}</view>
+          </view>
+
+          <view class='item'>
+            <view class='blankCharacter character' wx:if="{{correctAnswer!='D'}}">D</view>
+            <!-- <view class='correctCharacter character' wx:else>D</view> -->
+            <view wx:if="{{correctAnswer=='D'}}">
+              <view wx:if="{{showAnswer==true}}">
+                <view class='correctCharacter character'>D</view>
+              </view>
+
+              <view wx:if="{{showAnswer==false}}">
+                <view class='blankCharacter character'>D</view>
+              </view>
+
+            </view>
+            <view class='option'>{{nowQuestion.options[3]}}</view>
+          </view>
+        </view>
+
+
+        <view class='bottom'>
+
+
+          <view class='bottomRight'>
+            <view class='showAnswerTip' wx:if="{{IsAnswerButton==true}}" bindtap='showAnswerTip'>显示答案</view>
+          </view>
+
+
+          <view class='bottomLeft'>
+            <view class='frontQuestion' wx:if="{{nowQuestionNumber!=0}}" bindtap='frontQuestion'>上一题</view>
+          </view>
+
+          <view class='middle' bindtap='answerCard'>
+            <image class='leftIcon' src='../../images/1-01.png'></image>
+          </view>
+
+          <view class='bottomRight'>
+            <view class='lastQuestion' wx:if="{{nowQuestionNumber<QuestionEndIntData}}" bindtap='afterQuestion'>下一题</view>
+          </view>
+
+        </view>
+
+
+      </view>
+
+
+      <view wx:if="{{choseType=='judgeQues'}}">
+        <view class='top'>
+          <view class='topLeft'>
+            <text style='margin-left:20rpx;'>判断题</text>
+          </view>
+
+
+          <view class='topRight'>
+            <view>
+              <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;'>{{nowJudgeQuesNumber+1}}</text>
+              <text> / {{judgeQuesNum}}</text>
+            </view>
+          </view>
+
+        </view>
+        <view class='questionTitle'>
+          {{nowJudgeQues.title}}
+        </view>
+        <view class='questionOption'>
+
+          <view wx:if="{{showAnswer==true}}">
+
+            <view class='item'>
+              <view class='blankCharacter character' wx:if="{{judgeCorrectAnswer!='T'}}">对</view>
+              <view class='correctCharacter character' wx:if="{{judgeCorrectAnswer=='T'}}">对</view>
+            </view>
+            <view class='item'>
+              <view class='correctCharacter character' wx:if="{{judgeCorrectAnswer=='F'}}">错</view>
+              <view class='blankCharacter character' wx:if="{{judgeCorrectAnswer!='F'}}">对</view>
+            </view>
+						
+          </view>
+
+          <view wx:if="{{showAnswer==false}}">
+            <view class='item'>
+              <view class='blankCharacter character'>对</view>
+            </view>
+            <view class='item'>
+              <view class='blankCharacter character'>错</view>
+            </view>
+          </view>
+
+          <view class='bottom'>
+
+
+            <view class='bottomRight'>
+              <view class='showAnswerTip' wx:if="{{IsAnswerButton==true}}" bindtap='showAnswerTip'>显示答案</view>
+            </view>
+
+
+
+            <view class='bottomLeft'>
+              <view class='frontQuestion' wx:if="{{nowJudgeQuesNumber!=0}}" bindtap='TFfrontQuestion'>上一题</view>
+            </view>
+            <view class='middle' bindtap='answerCard'>
+              <image class='leftIcon' src='../../images/1-01.png'></image>
+            </view>
+            <view class='bottomRight'>
+              <view class='lastQuestion' wx:if="{{nowJudgeQuesNumber<judgeQuesEndIntData}}" bindtap='TFafterQuestion'>下一题</view>
+            </view>
+
+          </view>
+        </view>
+
+
+      </view>
+
+    </view>
+
+    <view wx:if="{{hadCollect==false}}">
+      <image class='noHistoryImage' src='../../images/noHistoryImage.png'></image>
+    </view>
+  </view>
+
+
+
+  <view wx:if="{{IsDisplayQuesNum == true}}">
+    <view class='title'>
+      <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;'>|</text>
+      <text>选择跳转到的题号-></text>
+    </view>
+
+    <view class="loading_box " wx:if="{{loading}}">
+      <view class="loading3 loading3_1 "></view>
+      <view class="loading3 loading3_2 "></view>
+      <view class="loading3 loading3_3 "></view>
+    </view>
+
+
+    <view class='title'>
+      <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;margin-left:5rpx;'>|</text>
+      <text>单项选择</text>
+
+      <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;margin-left:300rpx;'>{{nowQuestionNumber+1}}</text>
+      <text> / {{QuestionNum}}</text>
+      <view style='margin-bottom:15rpx;margin-top:5rpx;border-bottom: 3px solid #c9c9d8;'></view>
+
+    </view>
+
+    <view class='singleChoice' wx:for="{{singleCollectSeq}}">
+      <view class='singleChoiceItemError' bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view>
+    </view>
+
+
+    <view style='height:20rpx;  clear: both;'></view>
+
+    <view class='title'>
+      <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;margin-left:5rpx;'>|</text>
+      <text>判断题</text>
+
+      <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;margin-left:300rpx;'>{{nowJudgeQuesNumber+1}}</text>
+      <text> / {{judgeQuesNum}}</text>
+      <view style='margin-bottom:15rpx;margin-top:5rpx;border-bottom: 3px solid #c9c9d8;'></view>
+
+    </view>
+
+
+    <view class='singleChoice' wx:for="{{judgeCollectSeq}}">
+      <view class='singleChoiceItemError' bindtap='TFshowQues' data-index="{{index}}">{{item.Seq+1}}</view>
+    </view>
+
+
+
+
+
+  </view>
+
+
+
+
+
+
+</view>

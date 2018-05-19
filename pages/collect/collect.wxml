@@ -1,0 +1,28 @@
+<view class="page">
+
+
+  <view wx:if="{{loadFinish==false}}">
+    <view class='showLoading'>加载中，请稍候...</view>
+  </view>
+
+  <view wx:if="{{loadFinish==true}}">
+    <view class='item' wx:if="{{hadHistory==true}}" wx:for="{{historyQuestionBank}}" bindtap='showDetail' data-index="{{index}}" wx:key="historyQuestionBank">
+      <view class='itemName'>{{item.choseQuestionBank}}</view>
+
+    </view>
+
+    <view wx:if="{{hadHistory==false}}">
+      <image class='noHistoryImage' src='../../images/noHistoryImage.png'></image>
+    </view>
+
+  </view>
+
+
+
+
+
+
+
+
+
+</view>
