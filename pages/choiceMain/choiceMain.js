@@ -5,36 +5,37 @@ Bmob.initialize("2c3521672357ab6e3a1c7a397d38134b", "d8e5e597ce2ef7680eccf479cd5
 Page({
 
 
-  data: { 
+	data: {
+
+		// choseQuestionBank: "集控值班员",		
 		choseQuestionBank: "点击选择",
-		// choseQuestionBank:"集控值班员",
-		 
+
 
 		diaryList: [],
 
 
 		array: ['集控值班员', '脱硫值班员', '汽机题库', '锅炉题库', '电气题库', '其他'],
-	//	array: ['汽机运行员', '锅炉运行员',  '电气值班员'],
-     
+		//	array: ['汽机运行员', '锅炉运行员',  '电气值班员'],
 
 
-    objectArray: [
 
-	/*
-      {
-        id: 0,
-				name: '汽机运行员'
-      },
-      {
-        id: 1,
-				name: '锅炉运行员'
-      },
-      {
-        id: 2,
-				name: '电气值班员'
-      },
+		objectArray: [
 
-		  */
+			/*
+					{
+						id: 0,
+						name: '汽机运行员'
+					},
+					{
+						id: 1,
+						name: '锅炉运行员'
+					},
+					{
+						id: 2,
+						name: '电气值班员'
+					},
+		
+					*/
 
 			{
 				id: 0,
@@ -49,41 +50,35 @@ Page({
 				name: '汽机题库'
 			},
 
-      {
-        id: 3,
-        name: '锅炉题库'
-      },
-      {
-        id: 4,
-        name: '电气题库'
-      },
-      {
-        id: 5,
-        name: '其他'
-      }
-
-    
-
-
-    ],
-    index: 0,
-    loading: true,
-    currentUserId:''
-  },
-
-  onLoad: function () {
-    that = this;
-
-  },
-
-  onShow: function () {
-
-		
+			{
+				id: 3,
+				name: '锅炉题库'
+			},
+			{
+				id: 4,
+				name: '电气题库'
+			},
+			{
+				id: 5,
+				name: '其他'
+			}
 
 
 
 
-  },
+		],
+		index: 0,
+		loading: true,
+		currentUserId: ''
+	},
+
+	onLoad: function () {
+		that = this;
+
+	},
+
+	onShow: function () {
+	},
 
 
 
@@ -93,20 +88,45 @@ Page({
 
 
 
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value,
-      choseQuestionBank: that.data.array[e.detail.value]
-    })
-  },
+	bindPickerChange: function (e) {
+		console.log('picker发送选择改变，携带值为', e.detail.value)
+		this.setData({
+			index: e.detail.value,
+			choseQuestionBank: that.data.array[e.detail.value]
+		})
+	},
 
-	chose: function (e){
+	chose: function (e) {
 
 
+
+
+
+
+
+		var that = this;
 		var user = new Bmob.User();//开始注册用户
+
+
+
+
+		wx.getSystemInfo({
+			success: function (res) {
+				that.screenWidth = res.windowWidth;
+				that.screenHeight = res.windowHeight;
+				that.pixelRatio = res.pixelRatio;
+			}
+		});
+
 		var newOpenid = wx.getStorageSync('openid')
 		if (!newOpenid) {
+
+
+
+
+
+
+
 			wx.login({
 				success: function (res) {
 					user.loginWithWeapp(res.code).then(function (user) {
@@ -133,35 +153,31 @@ Page({
 							});
 
 
-
-
 							//保存用户其他信息
+							// wx.getUserInfo({
+							// 	success: function (result) {
 						
-								
-
 							var userInfo = e.detail.userInfo;
-									var nickName = userInfo.nickName;
-									var userPic = userInfo.avatarUrl;
-									console.log()
-									var u = Bmob.Object.extend("_User");
-									var query = new Bmob.Query(u);
-									// 这个 id 是要修改条目的 id，你在生成这个存储并成功时可以获取到，请看前面的文档
-									query.get(user.id, {
-										success: function (result) {
-											// 自动绑定之前的账号
+							var nickName = userInfo.nickName;
+							var userPic = userInfo.avatarUrl;
+							console.log()
+							var u = Bmob.Object.extend("_User");
+							var query = new Bmob.Query(u);
+							// 这个 id 是要修改条目的 id，你在生成这个存储并成功时可以获取到，请看前面的文档
+							query.get(user.id, {
+								success: function (result) {
+									// 自动绑定之前的账号
 
-											result.set('nickName', nickName);
-											result.set("userPic", userPic);
-											result.set("openid", openid);
-											result.save();
+									result.set('nickName', nickName);
+									result.set("userPic", userPic);
+									result.set("openid", openid);
+									result.save();
 
-										}
-									});
+								}
+							});
 
-							
-						
-
-
+							// 	}
+							// });
 
 
 						}
@@ -172,11 +188,7 @@ Page({
 
 				}
 			});
-		};
-
-
-
-		
+		}
 
 
 
@@ -194,62 +206,86 @@ Page({
 
 
 
-    var currentUser = Bmob.User.current();
-    var currentUserId = currentUser.id;
-    var User = Bmob.Object.extend("_User");
-    var queryUser = new Bmob.Query(User);
-    queryUser.get(currentUserId, {
-      success: function (result) {
-        var register = result.get("register");
-        console.log(currentUserId)
-        if (register==true){
-          var choseQuestionBank = that.data.choseQuestionBank;
-          if (choseQuestionBank != "点击选择") {
-            getApp().globalData.choseQuestionBank = choseQuestionBank;
-            getApp().globalData.score = 0;
 
-            wx.navigateTo({
+
+
+
+
+
+
+
+
+
+
+
+
+		var userInfo = e.detail.userInfo;
+		getApp().globalData.userInfo = userInfo;
+		var user = new Bmob.User();//开始注册用户
+		var newOpenid = wx.getStorageSync('openid')
+
+
+
+
+		getApp().globalData.userInfo = e.detail.userInfo
+		// Bmob.User.upInfo(e.detail.userInfo)
+
+
+
+
+		var currentUser = Bmob.User.current();
+		var currentUserId = currentUser.id;
+		var User = Bmob.Object.extend("_User");
+		var queryUser = new Bmob.Query(User);
+		queryUser.get(currentUserId, {
+			success: function (result) {
+				var register = result.get("register");
+				console.log(currentUserId)
+				if (register == true) {
+					var choseQuestionBank = that.data.choseQuestionBank;
+					if (choseQuestionBank != "点击选择") {
+						getApp().globalData.choseQuestionBank = choseQuestionBank;
+						getApp().globalData.score = 0;
+
+						wx.navigateTo({
 							url: '../singleChoiceDetail/singleChoiceDetail?choseQuestionBank=' + choseQuestionBank
 						});
 
-            // wx.navigateTo({							
-            //   url: '../singleChoiceExplain/singleChoiceExplain'
-            // });
+						// wx.navigateTo({							
+						//   url: '../singleChoiceExplain/singleChoiceExplain'
+						// });
 
 
-          }
-          else if (choseQuestionBank == "点击选择") {
-            wx.showToast({
-              title: '请选择题库',
-              image: '../../images/warn.png',
-              duration: 2000
-            })
-          }
-        }
-        else{
-          wx.showModal({
-            title: '尚未完善信息',
-            content: '请放心填写，您的隐私绝不会被泄露',
-            confirmText: '立即注册',
-            confirmColor: '#1bd0bd',
-            showCancel:false,
-            success: function (res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '../register/register'
-                })
-              } else if (res.cancel) {
-              }
-            }
-          })
-        }
-        that.setData({
-          loading: false
-        })
-      },
-
-
-
+					}
+					else if (choseQuestionBank == "点击选择") {
+						wx.showToast({
+							title: '请选择题库',
+							image: '../../images/warn.png',
+							duration: 2000
+						})
+					}
+				}
+				else {
+					wx.showModal({
+						title: '尚未完善信息',
+						content: '请放心填写，您的隐私绝不会被泄露',
+						confirmText: '立即注册',
+						confirmColor: '#1bd0bd',
+						showCancel: false,
+						success: function (res) {
+							if (res.confirm) {
+								wx.navigateTo({
+									url: '../register/register'
+								})
+							} else if (res.cancel) {
+							}
+						}
+					})
+				}
+				that.setData({
+					loading: false
+				})
+			},
 
 
 
@@ -262,9 +298,12 @@ Page({
 
 
 
-      error: function (object, error) {
-      }
-    });
+
+
+
+			error: function (object, error) {
+			}
+		});
 
 
 
@@ -274,23 +313,23 @@ Page({
 
 
 
-  },
-
- 
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      console.log(res.target)
-    }
-    return {
-      title: '大唐雷电',
-      path: '/pages/choiceMain/choiceMain',
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
 	},
- 
+
+
+	onShareAppMessage: function (res) {
+		if (res.from === 'button') {
+			console.log(res.target)
+		}
+		return {
+			title: '大唐雷电',
+			path: '/pages/choiceMain/choiceMain',
+			success: function (res) {
+				// 转发成功
+			},
+			fail: function (res) {
+				// 转发失败
+			}
+		}
+	},
+
 })

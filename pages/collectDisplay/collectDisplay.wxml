@@ -158,7 +158,7 @@
               <view class='correctCharacter character' wx:if="{{judgeCorrectAnswer=='F'}}">错</view>
               <view class='blankCharacter character' wx:if="{{judgeCorrectAnswer!='F'}}">对</view>
             </view>
-						
+
           </view>
 
           <view wx:if="{{showAnswer==false}}">
@@ -195,6 +195,70 @@
 
       </view>
 
+
+
+
+
+      <view wx:if="{{choseType=='shortAnswerQues'}}">
+        <view class='top'>
+          <view class='topLeft'>
+            <text style='margin-left:20rpx;'>简答题</text>
+          </view>
+
+
+          <view class='topRight'>
+            <view>
+              <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;'>{{SANowQuestNum+1}}</text>
+              <text> / {{collectSANum}}</text>
+            </view>
+          </view>
+
+        </view>
+        <view class='questionTitle'>
+          {{SANowQuestion.title}}
+        </view>
+        <view class='questionOption'>
+
+          <view wx:if="{{showAnswer==true}}">
+
+            <view class='item'>
+              <text class='SAoption'>{{SANowQuestion.options[0]}}</text>
+            </view>
+
+          </view>
+
+          <view class='bottom'>
+
+
+            <view class='bottomRight'>
+              <view class='showAnswerTip' wx:if="{{IsAnswerButton==true}}" bindtap='showAnswerTip'>显示答案</view>
+            </view>
+
+
+
+            <view class='bottomLeft'>
+              <view class='frontQuestion' wx:if="{{SANowQuestNum!=0}}" bindtap='SAfrontQuestion'>上一题</view>
+            </view>
+            <view class='middle' bindtap='answerCard'>
+              <image class='leftIcon' src='../../images/1-01.png'></image>
+            </view>
+            <view class='bottomRight'>
+              <view class='lastQuestion' wx:if="{{SANowQuestNum<SAQuestEndIntData}}" bindtap='SAafterQuestion'>下一题</view>
+            </view>
+
+          </view>
+        </view>
+
+
+      </view>
+
+
+
+
+
+
+
+
     </view>
 
     <view wx:if="{{hadCollect==false}}">
@@ -228,7 +292,12 @@
     </view>
 
     <view class='singleChoice' wx:for="{{singleCollectSeq}}">
-      <view class='singleChoiceItemError' bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view>
+       <view class='singleChoiceItemError' bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view> 
+
+			 <!-- <view class='singleChoiceItemBlank' wx:if="{{quesUserChose[item.Seq]=='空'}}" bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view>
+      <view class='singleChoiceItemCorrect' wx:elif="{{item.answer[0] == quesUserChose[item.Seq]}}" bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view>
+      <view class='singleChoiceItemError' wx:elif="{{item.answer[0] != quesUserChose[item.Seq]}}" bindtap='showQues' data-index="{{index}}">{{item.Seq+1}}</view> -->
+			
     </view>
 
 
@@ -250,6 +319,25 @@
     </view>
 
 
+
+    <view style='height:20rpx;  clear: both;'></view>
+
+    <view class='title'>
+      <text style='color:#1bd0db;font-size: 50rpx;margin-right:15rpx;margin-left:5rpx;'>|</text>
+      <text>简答题</text>
+
+      <text style='color:#1bd0bd;font-size:50rpx; font-style:italic;margin-right:10rpx;margin-left:300rpx;'>{{SANowQuestNum+1}}</text>
+      <text> / {{SAQuesNum}}</text>
+      <view style='margin-bottom:15rpx;margin-top:5rpx;border-bottom: 3px solid #c9c9d8;'></view>
+
+    </view>
+
+
+
+
+    <view class='singleChoice' wx:for="{{SACollectSeq}}">
+      <view class='singleChoiceItemBlank' bindtap='SAshowQues' data-index="{{index}}">{{item.Seq+1}}</view>
+    </view>
 
 
 

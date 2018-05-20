@@ -32,7 +32,12 @@ Page({
 		nowJudgeQuesNumber: 0,
 		nowJudgeQues: [],
 		judgeCorrectAnswer: '',
-		// judgeUserAnswer: '',
+
+		SACollectSeq: [],
+		collectSANum: 0,
+		SAQuestEndIntData: 0,
+		SANowQuestNum: 0,
+		SANowQuestion: [],
 
 
 		IsAnswerButton: true,
@@ -63,8 +68,9 @@ Page({
 
 		var collectSingleNum = getApp().globalData.collectSingleNum
 		var collectJudgeNum = getApp().globalData.collectJudgeNum
+		var collectSANum = getApp().globalData.collectSANum
 
-		if ((collectSingleNum < 1) && (collectSingleNum < 1)) {
+		if ((collectSingleNum < 1) && (collectSingleNum < 1) && (collectSANum < 1)) {
 
 			// Didn't has wrong question.
 			that.setData({
@@ -133,6 +139,42 @@ Page({
 				});
 
 			}
+
+
+
+			if (collectSANum > 0) {
+				var SACollectSeq = getApp().globalData.SACollectSeq
+				var collectSANum = SACollectSeq.length
+
+
+				// It has Collect question.
+				that.setData({
+					SACollectSeq: SACollectSeq,
+					collectSANum: collectSANum,
+					SAQuestEndIntData: parseInt(collectSANum) - 1,
+					choseType: choseType,
+					hadCollect: true,
+				});
+
+
+				var SANowQuestion = SACollectSeq[index];
+
+				that.setData({
+					SANowQuestNum: parseInt(options.index),
+					SANowQuestion: SANowQuestion, 
+				});
+
+
+				that.setData({
+					loading: false,
+				});
+
+			}
+
+
+
+
+
 
 		}
 
@@ -282,6 +324,71 @@ Page({
 				});
 
 	},
+
+
+
+
+
+
+	SAfrontQuestion: function () {
+		that = this;
+		var SANowQuestNum = that.data.SANowQuestNum;
+		SANowQuestNum = SANowQuestNum - 1;
+
+		var SANowQuestion = that.data.SACollectSeq[SANowQuestNum];
+
+		that.setData({
+			SANowQuestion: SANowQuestion,
+			SANowQuestNum: SANowQuestNum,
+
+			IsAnswerButton: true,
+			showAnswer: false,
+		});
+	},
+
+
+
+
+	SAafterQuestion: function () {
+		that = this;
+
+		var SANowQuestNum = that.data.SANowQuestNum;
+		SANowQuestNum = SANowQuestNum + 1;
+
+		var SANowQuestion = that.data.SACollectSeq[SANowQuestNum];
+
+		that.setData({
+			SANowQuestion: SANowQuestion,
+			SANowQuestNum: SANowQuestNum,
+
+			IsAnswerButton: true,
+			showAnswer: false,
+		});
+
+	},
+
+
+
+	SAshowQues: function (e) {
+		that = this;
+
+		var index = e.currentTarget.dataset.index;
+		var SANowQuestion = that.data.SACollectSeq[index];
+
+		// not To display question number.
+		that.setData({
+			SANowQuestNum: index,
+			SANowQuestion: SANowQuestion,
+			choseType: 'shortAnswerQues',
+			IsDisplayQuesNum: false,
+
+			IsAnswerButton: true,
+			showAnswer: false,
+		});
+
+	},
+
+
 
 
 

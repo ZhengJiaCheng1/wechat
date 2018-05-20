@@ -11,6 +11,8 @@ var Bmob = require('utils/bmob.js');
 Bmob.initialize("2c3521672357ab6e3a1c7a397d38134b", "d8e5e597ce2ef7680eccf479cd549c7e");
 
 App({
+
+	
 	onLaunch: function () {
 
 
@@ -65,31 +67,31 @@ App({
 							});
 
 
-							//保存用户其他信息
-							wx.getUserInfo({
-								success: function (result) {
+							// //保存用户其他信息
+							// wx.getUserInfo({
+							// 	success: function (result) {
 
-									var userInfo = result.userInfo;
-									var nickName = userInfo.nickName;
-									var userPic = userInfo.avatarUrl;
-									console.log()
-									var u = Bmob.Object.extend("_User");
-									var query = new Bmob.Query(u);
-									// 这个 id 是要修改条目的 id，你在生成这个存储并成功时可以获取到，请看前面的文档
-									query.get(user.id, {
-										success: function (result) {
-											// 自动绑定之前的账号
+							// 		var userInfo = result.userInfo;
+							// 		var nickName = userInfo.nickName;
+							// 		var userPic = userInfo.avatarUrl;
+							// 		console.log()
+							// 		var u = Bmob.Object.extend("_User");
+							// 		var query = new Bmob.Query(u);
+							// 		// 这个 id 是要修改条目的 id，你在生成这个存储并成功时可以获取到，请看前面的文档
+							// 		query.get(user.id, {
+							// 			success: function (result) {
+							// 				// 自动绑定之前的账号
 
-											result.set('nickName', nickName);
-											result.set("userPic", userPic);
-											result.set("openid", openid);
-											result.save();
+							// 				result.set('nickName', nickName);
+							// 				result.set("userPic", userPic);
+							// 				result.set("openid", openid);
+							// 				result.save();
 
-										}
-									});
+							// 			}
+							// 		});
 
-								}
-							});
+							// 	}
+							// });
 
 
 						}
@@ -118,12 +120,12 @@ App({
 			wx.login({
 				success: function () {
 
-					wx.getUserInfo({
-						success: function (res) {
-							that.globalData.userInfo = res.userInfo
-							typeof cb == "function" && cb(that.globalData.userInfo)
-						}
-					})
+					// wx.getUserInfo({
+					// 	success: function (res) {
+					// 		that.globalData.userInfo = res.userInfo
+					// 		typeof cb == "function" && cb(that.globalData.userInfo)
+					// 	}
+					// })
 				}
 			})
 		}
@@ -149,6 +151,7 @@ App({
 		collectSingleNum: 0,
 		collectJudgeNum: 0,
 
-		
+		SACollectSeq: [],
+		collectSANum: 0,
 			}
 })

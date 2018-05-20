@@ -6,7 +6,7 @@ Page({
   /**
    * 页面的初始数据
    */
-	data: {
+	data: { 
 		questionList: [],
 		choseQuestionBank: '',
 		historyQuestionBank: [],
@@ -160,14 +160,33 @@ Page({
 		})
 
 
+		//  Get has how many questions, short answer.	     
+		const pmSAList = new Promise((resolve, reject) => {
+			var SAQuesNumQuery = new Bmob.Query(Bmob.Object.extend(loadQuestionBank))
+			SAQuesNumQuery.equalTo("type", "SA");
+			SAQuesNumQuery.limit(980);
+			SAQuesNumQuery.ascending("Seq"); //升序
+			SAQuesNumQuery.find({
+				success: (results) => {
+					resolve(results);
+					console.log(results);
+				},
+
+			});
+		})
+
+
 		singleCollectSeq = [];
-		Promise.all([pmquestionList, pmCollect, pmJudgeList]).then((val) => {
+		Promise.all([pmquestionList, pmCollect, pmJudgeList, pmSAList]).then((val) => {
 			var collectSingle = new Array();
 			var collectJudge = new Array();
+			var collectSA = new Array();
+			var collectShortAns = new Array();
 			console.log(val);
 			questionList = val[0];
 			collectSingle = val[1].attributes.collectSingle;
 			collectJudge = val[1].attributes.collectJudge;
+			collectShortAns = val[1].attributes.collectShortAns;
 			var collectType = val[1].attributes.ansProgress[0].collectType;
 			var collectIndex = val[1].attributes.ansProgress[0].collectIndex;
 
@@ -209,6 +228,33 @@ Page({
 			// Set value to global, use to display.
 			getApp().globalData.judgeCollectSeq = judgeCollectSeq;
 			getApp().globalData.collectJudgeNum = collectJudgeNum;
+
+
+
+			// get  the Collect question of short  answer type.
+			var SAQuesList = new Array();
+			var SACollectSeq = new Array();
+			SAQuesList = val[3];
+
+			var collectSANum = 0;  // The num of collect short answer question.
+			for (var i = 0; i < collectShortAns.length; i++) {
+				// First, must not to be '空', it means user hasn't set it as collect.
+				if (collectShortAns[i] != '空') {
+					// if user set it as collect, set value.
+					SACollectSeq.push(SAQuesList[i])
+					collectSANum = collectSANum + 1
+				}
+			}
+
+			if (collectSANum >= 1) {
+				// If didn't had single and judge collect question, then set it to display sa collect  question.
+				if ((collectSingleNum < 1) && (collectJudgeNum < 1)) { collectType = "shortAnswerQues" }
+
+			}
+			// Set value to global, use to display.
+			getApp().globalData.SACollectSeq = SACollectSeq;
+			getApp().globalData.collectSANum = collectSANum;
+
 
 
 			wx.navigateTo({				
